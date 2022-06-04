@@ -1,0 +1,29 @@
+@import '../../styles/typography';
+@import '../../styles/settings.scss';
+
+.nav {
+  padding: $space-unit;
+  border-bottom: 1px solid $color-gray;
+}
+
+.navLayout {
+  max-width: 992px;
+  padding-inline: $space-unit * 2;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: $font-logo;
+  font-size: 2rem;
+  color: $color-dark;
+  text-decoration: none;
+}
+
+.iconBox i {
+  font-size: 1.5rem;
+  padding: $space-unit * 0.5 $space-unit;
+  cursor: pointer;
+}
