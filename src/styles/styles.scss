@@ -1,0 +1,14 @@
+@import 'typography.scss';
+@import 'settings.scss';
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  color: $color-gray;
+}
+
+body {
+  font-family: $font-main;
+}
