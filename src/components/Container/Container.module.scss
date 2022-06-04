@@ -1,0 +1,7 @@
+@import '../../styles/settings.scss';
+
+.container {
+  max-width: 940px;
+  margin: 0 auto;
+  padding-inline: $space-unit * 2;
+}
