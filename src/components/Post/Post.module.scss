@@ -1,0 +1,48 @@
+@import '../../styles/settings.scss';
+
+.postContainer {
+  border: 1px solid $color-gray;
+  border-radius: $radius;
+  width: max-content;
+}
+
+.profileData {
+  padding: $space-unit * 0.5;
+  display: flex;
+  gap: $space-unit;
+}
+
+.profileNickname {
+  margin: 0;
+  align-self: center;
+  font-weight: 700;
+  color: $color-dark;
+  font-size: 0.9rem;
+}
+
+.profilePicture {
+  border-radius: 100%;
+  aspect-ratio: 1 / 1;
+  height: 40px;
+}
+
+.postLabel {
+  padding: $space-unit * 0.5 $space-unit
+}
+
+.postControls i{
+  margin-right: $space-unit;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.likes {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: $color-dark
+}
+
+.arrow {
+  -webkit-text-stroke: 2px black;
+  color: white;
+}
