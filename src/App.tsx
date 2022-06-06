@@ -1,12 +1,17 @@
 import React from 'react';
 import Container from './components/Container/Container';
-import './styles/styles.scss';
+import Navbar from './components/Navbar/Navbar';
+import PostsList from './components/PostsList/PostsList';
 
 function App() {
   return (
-    <Container>
-      <h1>test</h1>
-    </Container>
+    <>
+      <Navbar></Navbar>
+      <Container>
+        <h1>test</h1>
+        <PostsList></PostsList>
+      </Container>
+    </>
   );
 }
 
