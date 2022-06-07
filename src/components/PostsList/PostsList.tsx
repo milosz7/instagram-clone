@@ -9,10 +9,9 @@ const PostsList: React.FC = () => {
   const postsStatus = useAppSelector(getPostStatus);
   const dispatch = useAppDispatch();
 
-  const observer = useRef<any>(null); //needs typings
-  console.log(observer);
+  const observer = useRef<IntersectionObserver>();
+
   const lastPostElement = useCallback((elem: HTMLDivElement) => {
-    console.log(elem)
     if (postsStatus === 'loading') return
     if (observer.current) observer.current.disconnect();
     observer.current = new IntersectionObserver(entries  => {
