@@ -28,16 +28,17 @@ const PostsList = () => {
 
   useEffect(() => {
     if (postsStatus === 'idle') {
-      dispatch(fetchPostData());
+      dispatch(fetchPostData())
     }
   }, [dispatch, postsStatus]);
 
   return (
     <div className={styles.postContainer}>
-      {postsData.map(({ imageURL, username, picture, likes }, idx: number) => {
+      {postsData.map(({ id, imageURL, username, picture, likes }, idx: number) => {
         if (postsData.length === idx + 1) {
           return (
             <Post
+              id={id}
               ref={lastPostElement}
               imageURL={imageURL}
               likes={likes}
@@ -49,6 +50,7 @@ const PostsList = () => {
         }
         return (
           <Post
+            id={id}
             imageURL={imageURL}
             likes={likes}
             pictureSrc={picture}
