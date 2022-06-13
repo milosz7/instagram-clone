@@ -1,9 +1,9 @@
 import { useEffect, useRef, useCallback } from 'react';
-import { useAppDispatch, useAppSelector } from '../../redux/hooks';
-import { fetchPostData, getPostStatus, getAllPosts } from '../../redux/slices/postsSlice';
-import Post from '../Post/Post';
+import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
+import { fetchPostData, getPostStatus, getAllPosts } from '../../../redux/slices/postsSlice';
+import Post from '../../views/Post/Post';
 import styles from './PostsList.module.scss'
-import Spinner from '../common/Spinner/Spinner';
+import Spinner from '../../common/Spinner/Spinner';
 
 const PostsList = () => {
   const postsData = useAppSelector(getAllPosts);

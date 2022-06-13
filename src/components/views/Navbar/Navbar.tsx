@@ -1,6 +1,6 @@
 import styles from './Navbar.module.scss';
 
-const Navbar: React.FC = () => {
+const Navbar = () => {
   return (
     <nav className={styles.nav}>
         <div className={styles.navLayout}>
