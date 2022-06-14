@@ -1,0 +1,10 @@
+@import '../../../styles/settings.scss';
+
+.contentBox {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -30%);
+  text-align: center;
+  color: $color-dark; 
+}
