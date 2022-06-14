@@ -22,10 +22,16 @@ interface Data {
   picture: Picture;
 }
 
-const initialState = {
-  posts: [] as Post[],
-  status: 'idle', // idle, loading, succeeded, failed
-  error: null
+interface State {
+  posts: Post[];
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: undefined | string;
+}
+
+const initialState: State = {
+  posts: [],
+  status: 'idle',
+  error: undefined
 };
 
 export const fetchPostData = createAsyncThunk('posts/fetchPost', async () => {
@@ -73,6 +79,7 @@ const postsSlice = createSlice({
       })
       .addCase(fetchPostData.rejected, (state, action) => {
         state.status = 'failed';
+        state.error = action.error.message
         console.log(action.error.message)
       })
   }
