@@ -1,16 +1,29 @@
 import styles from './Navbar.module.scss';
+import IconButtonAnimated from '../../common/IconButtonAnimated/IconButtonAnimated';
+import IconButton from '../../common/IconButton/IconButton';
+import { NavLink, Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
     <nav className={styles.nav}>
         <div className={styles.navLayout}>
-          <a className={styles.logo} href="/">Fakeinsta</a>
+          <Link to="/" className={styles.logo}>Fakeinsta</Link>
           <div className={styles.iconBox}>
-            <i className="fa fa-home"></i>
-            <i className={`fa fa-location-arrow ${styles.arrow}`} ></i>
-            <i className="fa fa-plus"></i>
-            <i className="fa fa-compass"></i>
-            <i className="fa fa-heart-o"></i>
+            <NavLink to="/">
+              <IconButton icon="home"/>
+            </NavLink>
+            <NavLink to="messages">
+              <IconButton icon="location-arrow"/>
+            </NavLink>
+            <NavLink to="add">
+              <IconButton icon="plus"/>
+            </NavLink>
+            <NavLink to="discover">
+              <IconButton icon="compass"/>
+            </NavLink>
+            <NavLink to="favorites">
+              <IconButton icon="heart"/>
+            </NavLink>
           </div>
         </div>
     </nav>
