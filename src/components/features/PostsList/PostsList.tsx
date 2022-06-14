@@ -34,7 +34,7 @@ const PostsList = () => {
 
   return (
     <div className={styles.postContainer}>
-      {postsData.map(({ id, imageURL, username, picture, likes }, idx: number) => {
+      {postsData.map(({ id, imageURL, username, picture, likes, isFavorite }, idx: number) => {
         if (postsData.length === idx + 1) {
           return (
             <Post
@@ -45,6 +45,7 @@ const PostsList = () => {
               pictureSrc={picture}
               username={username}
               key={idx}
+              isFavorite={isFavorite}
             />
           );
         }
@@ -56,6 +57,7 @@ const PostsList = () => {
             pictureSrc={picture}
             username={username}
             key={idx}
+            isFavorite={isFavorite}
           />
         );
       })}

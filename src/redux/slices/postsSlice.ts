@@ -7,7 +7,7 @@ import shortid from "shortid";
 const USERDATA_URL = 'https://randomuser.me/api/?inc=login,picture';
 const IMAGE_URL = 'https://source.unsplash.com/random/400x500';
 
-type Post = {imageURL: string, username: string, picture: string, likes: number, id: string};
+type Post = {imageURL: string, username: string, picture: string, likes: number, id: string, isFavorite: boolean};
 
 interface Login {
   username: string;
@@ -53,10 +53,10 @@ const postsSlice = createSlice({
   initialState,
   reducers: {
     likePost: (state, action) => {
-      state.posts = state.posts.map((post) => post.id === action.payload ? {...post, likes: post.likes + 1} : post)
+      state.posts = state.posts.map((post) => post.id === action.payload ? {...post, likes: post.likes + 1, isFavorite: !post.isFavorite} : post)
     },
     dislikePost: (state, action) => {
-      state.posts = state.posts.map(post => post.id === action.payload ? {...post, likes: post.likes - 1} : post)
+      state.posts = state.posts.map(post => post.id === action.payload ? {...post, likes: post.likes - 1, isFavorite: !post.isFavorite} : post)
     }
   },
   extraReducers: (builder) => {
@@ -73,6 +73,7 @@ const postsSlice = createSlice({
           username: userDetails.login.username,
           picture: userDetails.picture.thumbnail,
           likes: Math.floor(Math.random() * 5000) + 1,
+          isFavorite: false,
         }
         state.status = 'succeeded';
         state.posts = state.posts.concat(generatedPost);
@@ -90,5 +91,6 @@ export const { likePost, dislikePost } = postsSlice.actions;
 export const getAllPosts = (state: RootState) => state.postsReducer.posts;
 export const getPostStatus = (state: RootState) => state.postsReducer.status;
 export const getPostById = (state: RootState, id: string) => state.postsReducer.posts.find(post => post.id === id); 
+export const getFavoritePosts = (state: RootState) => state.postsReducer.posts.filter(post => post.isFavorite);
 
 export default postsSlice.reducer;

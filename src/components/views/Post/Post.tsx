@@ -3,7 +3,6 @@ import IconButton from '../../common/IconButton/IconButton';
 import styles from './Post.module.scss';
 import { likePost, dislikePost } from '../../../redux/slices/postsSlice';
 import { useAppDispatch } from '../../../redux/hooks';
-import clsx from 'clsx';
 import IconButtonAnimated from '../../common/IconButtonAnimated/IconButtonAnimated';
 
 type Props = {
@@ -12,11 +11,12 @@ type Props = {
   pictureSrc: string;
   likes: number;
   id: string;
+  isFavorite: boolean;
 };
 
 const Post = React.memo(
-  React.forwardRef<HTMLDivElement, Props>(({ imageURL, username, pictureSrc, likes, id }, ref) => {
-    const [liked, setLiked] = useState(false);
+  React.forwardRef<HTMLDivElement, Props>(({ imageURL, username, pictureSrc, likes, id, isFavorite }, ref) => {
+    const [liked, setLiked] = useState(isFavorite);
     const dispatch = useAppDispatch();
 
     const manageClick = (id: string) => {
