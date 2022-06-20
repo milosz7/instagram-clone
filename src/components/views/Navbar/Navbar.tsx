@@ -1,12 +1,13 @@
 import styles from './Navbar.module.scss';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import StrokeIcon from '../../common/StrokeIcon/StrokeIcon';
+import LogoButton from '../LogoButton/LogoButton';
 
 const Navbar = () => {
   return (
     <nav className={styles.nav}>
         <div className={styles.navLayout}>
-          <Link to="/" className={styles.logo}>Fakeinsta</Link>
+          <LogoButton>Fakeinsta</LogoButton>
           <div className={styles.iconBox}>
             <NavLink to="/">
               <StrokeIcon icon="home"/>
