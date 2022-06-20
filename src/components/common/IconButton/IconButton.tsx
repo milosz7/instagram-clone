@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './IconButton.module.scss';
+import StrokeIcon from '../StrokeIcon/StrokeIcon';
 
 const IconButton = ({
   icon,
@@ -14,7 +15,7 @@ const IconButton = ({
 }) => {
   return (
     <button type="button" className={styles.iconButton}>
-      <i className={`fa fa-${icon} ${styles.buttonStroke}`}></i>
+      <StrokeIcon icon={icon} />
     </button>
   );
 };

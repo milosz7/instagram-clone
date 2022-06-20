@@ -25,10 +25,14 @@
   text-decoration: none;
 }
 
-.iconBox i {
-  font-size: 1.5rem;
-  padding: $space-unit * 0.5 $space-unit;
-  cursor: pointer;
+.iconBox {
+
+  & i {
+    font-size: 1.5rem;
+    padding: $space-unit * 0.5 $space-unit;
+    cursor: pointer;
+    transition: all 0.5s;
+  }
 }
 
 .arrow {
