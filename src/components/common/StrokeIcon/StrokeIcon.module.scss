@@ -1,0 +1,6 @@
+@import '../../../styles/settings.scss';
+
+.stroke {
+  -webkit-text-stroke: 1.5px $color-black;
+  color: $color-light;
+}
