@@ -1,0 +1,12 @@
+@import '../../../styles/typography';
+@import '../../../styles/settings.scss';
+
+.logoBtn {
+  background-color: transparent;
+  font-family: $font-logo;
+  font-size: 2rem;
+  color: $color-dark;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
