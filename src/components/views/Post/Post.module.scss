@@ -1,6 +1,6 @@
 @import '../../../styles/settings.scss';
 
-.postContainer {
+.container {
   border: $b-width solid $color-gray;
   border-radius: $radius;
   width: calc(400px + 2 * $b-width);
@@ -8,61 +8,6 @@
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
 }
 
-.profileData {
-  padding: $space-unit * 0.5;
-  display: flex;
-  gap: $space-unit;
-}
-
-.profileNickname {
-  margin: 0;
-  align-self: center;
-  font-weight: 700;
-  color: $color-dark;
-  font-size: 0.9rem;
-}
-
-.profilePicture {
-  border-radius: 100%;
-  aspect-ratio: 1 / 1;
-  height: 40px;
-}
-
 .postLabel {
   padding: $space-unit * 0.5 $space-unit
-}
-
-.postControls i{
-  margin-right: $space-unit;
-  font-size: 1.5rem;
-  cursor: pointer;
-}
-
-.postInfo {
-  display: flex;
-  flex-flow: column nowrap;
-  gap: $space-unit * 0.5;
-  padding: $space-unit $space-unit * 0.5 $space-unit 0 
-}
-
-.postDesc {
-  margin: 0;
-  font-size: 0.9rem;
-  display: inline-block;
-}
-
-.likes {
-  font-size: 0.9rem;
-  font-weight: 700;
-  margin: 0;
-  color: $color-dark
-}
-
-.iconButton {
-  border: none;
-  width: max-content;
-  background: transparent;
-  line-height: 1.5rem;
-  text-align: center;
-  padding: $space-unit * 0.25;
 }
