@@ -12,3 +12,9 @@ body {
 .active i {
   color: $color-dark;
 }
+
+[data-reach-dialog-content] {
+  background: transparent;
+  opacity: 1;
+  width: max-content;
+}
