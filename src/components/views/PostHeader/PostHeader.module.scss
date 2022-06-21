@@ -1,0 +1,22 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  padding: $space-unit * 0.5;
+  display: flex;
+  gap: $space-unit;
+}
+
+.username {
+  margin: 0;
+  align-self: center;
+  font-weight: 700;
+  color: $color-dark;
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.image {
+  border-radius: 100%;
+  aspect-ratio: 1 / 1;
+  height: 40px;
+}
