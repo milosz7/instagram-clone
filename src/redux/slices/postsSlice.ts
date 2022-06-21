@@ -6,7 +6,7 @@ import shortid from 'shortid';
 
 const USERDATA_URL = 'https://randomuser.me/api/?inc=login,picture';
 const IMAGE_URL = 'https://source.unsplash.com/random/400x500';
-const DESC_URL = 'https://api.quotable.io/random';
+const DESC_URL = 'https://api.quotable.io/random?maxLength=100';
 
 type Post = {
   imageURL: string;
