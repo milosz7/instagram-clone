@@ -11,47 +11,55 @@ type Props = {
   pictureSrc: string;
   likes: number;
   id: string;
+  desc: string;
   isFavorite: boolean;
 };
 
 const Post = React.memo(
-  React.forwardRef<HTMLDivElement, Props>(({ imageURL, username, pictureSrc, likes, id, isFavorite }, ref) => {
-    const [liked, setLiked] = useState(isFavorite);
-    const dispatch = useAppDispatch();
+  React.forwardRef<HTMLDivElement, Props>(
+    ({ imageURL, username, pictureSrc, likes, id, isFavorite, desc }, ref) => {
+      const [liked, setLiked] = useState(isFavorite);
+      const dispatch = useAppDispatch();
 
-    const manageClick = (id: string) => {
-      setLiked(!liked);
-      changePostStatus(id);
-    };
+      const manageClick = (id: string) => {
+        setLiked(!liked);
+        changePostStatus(id);
+      };
 
-    const changePostStatus = (id: string) => {
-      if (!liked) dispatch(likePost(id));
-      if (liked) dispatch(dislikePost(id));
-    };
+      const changePostStatus = (id: string) => {
+        if (!liked) dispatch(likePost(id));
+        if (liked) dispatch(dislikePost(id));
+      };
 
-    return (
-      <div ref={ref} className={styles.postContainer}>
-        <div className={styles.profileData}>
-          <img className={styles.profilePicture} src={pictureSrc} alt="avatar" />
-          <p className={styles.profileNickname}>{username}</p>
-        </div>
-        <img src={imageURL} alt="post content" />
-        <div className={styles.postLabel}>
-          <div className={styles.postControls}>
-            <IconButtonAnimated
-              icon="heart"
-              isClicked={liked}
-              colorClass="buttonLikedRed"
-              action={() => manageClick(id)}
-            />
-            <IconButton icon="comment" />
-            <IconButton icon="location-arrow" />
+      return (
+        <div ref={ref} className={styles.postContainer}>
+          <div className={styles.profileData}>
+            <img className={styles.profilePicture} src={pictureSrc} alt="avatar" />
+            <p className={styles.profileNickname}>{username}</p>
           </div>
-          <p className={styles.likes}>Total likes: {likes}</p>
+          <img src={imageURL} alt="post content" />
+          <div className={styles.postLabel}>
+            <div className={styles.postControls}>
+              <IconButtonAnimated
+                icon="heart"
+                isClicked={liked}
+                colorClass="buttonLikedRed"
+                action={() => manageClick(id)}
+              />
+              <IconButton icon="comment" />
+              <IconButton icon="location-arrow" />
+            </div>
+            <div className={styles.postInfo}>
+              <p className={styles.likes}>
+                {likes} {likes !== 1 ? 'likes' : 'like'}
+              </p>
+              <p className={styles.postDesc}>{desc}</p>
+            </div>
+          </div>
         </div>
-      </div>
-    );
-  })
+      );
+    }
+  )
 );
 
 export default Post;

@@ -15,7 +15,7 @@ const FavoritesList = () => {
     );
   return (
     <>
-      {favoritePosts.map(({ id, imageURL, username, picture, likes, isFavorite }, idx: number) => {
+      {favoritePosts.map(({ id, imageURL, username, picture, likes, isFavorite, desc }, idx: number) => {
         return (
           <Post
             id={id}
@@ -23,6 +23,7 @@ const FavoritesList = () => {
             likes={likes}
             pictureSrc={picture}
             username={username}
+            desc={desc}
             key={idx}
             isFavorite={isFavorite}
           />
