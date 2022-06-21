@@ -99,7 +99,6 @@ const postsSlice = createSlice({
           isFavorite: false,
         };
         state.status = 'succeeded';
-        console.log(generatedPost)
         state.posts = state.posts.concat(generatedPost);
       })
       .addCase(fetchPostData.rejected, (state, action) => {
@@ -114,7 +113,7 @@ export const { likePost, dislikePost } = postsSlice.actions;
 
 export const getAllPosts = (state: RootState) => state.postsReducer.posts;
 export const getPostStatus = (state: RootState) => state.postsReducer.status;
-export const getPostById = (state: RootState, id: string) =>
+export const getPostById = (state: RootState, id: string | undefined) =>
   state.postsReducer.posts.find((post) => post.id === id);
 export const getFavoritePosts = (state: RootState) =>
   state.postsReducer.posts.filter((post) => post.isFavorite);
