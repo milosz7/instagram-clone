@@ -1,0 +1,21 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: $space-unit * 0.5;
+  padding: $space-unit $space-unit * 0.5 $space-unit 0
+}
+
+.bolded {
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin: 0;
+  color: $color-dark
+}
+
+.desc {
+  margin: 0;
+  font-size: 0.9rem;
+  display: inline-block;
+}
