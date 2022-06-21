@@ -3,24 +3,36 @@ import Navbar from './components/views/Navbar/Navbar';
 import Home from './components/pages/Home/Home';
 import Discover from './components/pages/Discover/Discover';
 import Favorites from './components/pages/Favorites/Favorites';
-import { Route, Routes } from 'react-router';
+import { Route, Routes, useLocation } from 'react-router';
 import Add from './components/pages/Add/Add';
+import PostModal from './components/views/PostModal/PostModal';
 import Messages from './components/pages/Messages/Messages';
 import NotFound from './components/pages/NotFound/NotFound';
 
 function App() {
+
+  const location = useLocation();
+  let state = location.state as {backgroundLocation?: Location}
+
   return (
     <>
       <Navbar></Navbar>
       <Container>
-        <Routes>
+        <Routes location={state?.backgroundLocation || location}>
           <Route path='/' element={<Home />} />
           <Route path='favorites' element={<Favorites />} />
           <Route path='discover' element={<Discover />} />
-          <Route path="add" element={<Add />} />
-          <Route path="messages" element={<Messages />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path='add' element={<Add />} />
+          <Route path='post/:id' element={<NotFound />}></Route>
+          <Route path='messages' element={<Messages />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
+
+        {state?.backgroundLocation && (
+          <Routes>
+            <Route path='/post/:id' element={<PostModal />}></Route>
+          </Routes>
+        )}
       </Container>
     </>
   );
