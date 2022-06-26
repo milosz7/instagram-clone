@@ -16,5 +16,6 @@ body {
 [data-reach-dialog-content] {
   background: transparent;
   opacity: 1;
-  width: max-content;
+  max-width: 1000px;
+  width: 100%;
 }
