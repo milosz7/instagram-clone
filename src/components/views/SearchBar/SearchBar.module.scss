@@ -1,0 +1,13 @@
+@import '../../../styles/settings.scss';
+
+.input {
+  padding: $space-unit * 0.5 $space-unit;
+  border: none;
+  background-color: lighten($color-gray, 15%);
+  border-radius: $radius;
+  position: relative;
+
+  &:focus {
+    outline-color: $color-gray;
+  }
+}
