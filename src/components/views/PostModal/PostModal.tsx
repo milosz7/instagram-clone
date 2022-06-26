@@ -17,17 +17,18 @@ const PostModal = () => {
     navigate(-1);
   };
   if (!postData) return null;
+  const { imageURL, username, picture, desc, likes, isFavorite} = postData;
   return (
     <Dialog aria-labelledby="label" onDismiss={closeModal}>
       <div className={styles.modalContainer}>
         <div className={styles.imageContainer}>
-          <img className={styles.postImage} src={postData.imageURL} alt="post content" />
+          <img className={styles.postImage} src={imageURL} alt="post content" />
         </div>
         <div className={styles.postInfo}>
-          <PostHeader pictureSrc={postData.picture} username={postData.username} />
+          <PostHeader pictureSrc={picture} username={username} />
           <div className={styles.commentBox}></div>
-          <PostInfo desc={postData.desc} likes={postData.likes} username={postData.username} />
-          <PostControls id={id} isFavorite={postData.isFavorite} />
+          <PostInfo desc={desc} likes={likes} username={username} />
+          <PostControls id={id} isFavorite={isFavorite} />
         </div>
       </div>
     </Dialog>
