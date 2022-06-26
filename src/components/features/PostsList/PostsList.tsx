@@ -13,8 +13,8 @@ const PostsList = () => {
   const observer = useRef<IntersectionObserver>();
 
   const lastPostElement = useCallback(
-    (elem: HTMLDivElement) => {
-      if (postsStatus === 'loading') return null;
+    (elem: HTMLDivElement) => {  
+      if (postsStatus === 'loading' && observer.current) return null;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
