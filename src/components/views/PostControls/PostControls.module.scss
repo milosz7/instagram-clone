@@ -1,7 +1,11 @@
 @import '../../../styles/settings.scss';
 
-.container i{
-  margin-right: $space-unit;
-  font-size: 1.5rem;
-  cursor: pointer;
+.container {
+  
+  & i{
+   margin-right: $space-unit;
+   font-size: 1.5rem;
+   cursor: pointer;
+  }
 }
+
