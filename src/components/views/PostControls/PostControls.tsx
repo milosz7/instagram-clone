@@ -5,9 +5,11 @@ import { useAppDispatch } from '../../../redux/hooks';
 import { likePost, dislikePost } from '../../../redux/slices/postsSlice';
 import IconButton from '../../common/IconButton/IconButton';
 
-const PostInfo = ({ isFavorite, id }: {isFavorite: boolean, id: string}) => {
+const PostControls = ({ isFavorite, id }: { isFavorite: boolean; id: string | undefined }) => {
   const [liked, setLiked] = useState(isFavorite);
   const dispatch = useAppDispatch();
+
+  if (!id) return null;
 
   const manageClick = (id: string) => {
     setLiked(!liked);
@@ -21,7 +23,7 @@ const PostInfo = ({ isFavorite, id }: {isFavorite: boolean, id: string}) => {
 
   return (
     <div className={styles.container}>
-      <IconButtonAnimated 
+      <IconButtonAnimated
         icon="heart"
         isClicked={liked}
         colorClass="buttonLikedRed"
@@ -30,7 +32,7 @@ const PostInfo = ({ isFavorite, id }: {isFavorite: boolean, id: string}) => {
       <IconButton icon="comment" />
       <IconButton icon="location-arrow" />
     </div>
-  )
-}
+  );
+};
 
-export default PostInfo;
+export default PostControls;
