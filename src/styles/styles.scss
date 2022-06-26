@@ -7,6 +7,7 @@
 
 body {
   font-family: $font-main;
+  background-color: lighten($color-gray, 15%);
 }
 
 .active i {
