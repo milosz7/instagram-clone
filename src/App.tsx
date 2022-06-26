@@ -8,6 +8,7 @@ import Add from './components/pages/Add/Add';
 import PostModal from './components/views/PostModal/PostModal';
 import Messages from './components/pages/Messages/Messages';
 import NotFound from './components/pages/NotFound/NotFound';
+import PostPage from './components/pages/PostPage/PostPage';
 
 function App() {
 
@@ -23,7 +24,7 @@ function App() {
           <Route path='favorites' element={<Favorites />} />
           <Route path='discover' element={<Discover />} />
           <Route path='add' element={<Add />} />
-          <Route path='post/:id' element={<NotFound />}></Route>
+          <Route path='post/:id' element={<PostPage />}></Route>
           <Route path='messages' element={<Messages />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
