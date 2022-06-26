@@ -79,6 +79,9 @@ const postsSlice = createSlice({
           : post
       );
     },
+    clearPosts: (state) => {
+      state.posts = [];
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -109,7 +112,7 @@ const postsSlice = createSlice({
   },
 });
 
-export const { likePost, dislikePost } = postsSlice.actions;
+export const { likePost, dislikePost, clearPosts } = postsSlice.actions;
 
 export const getAllPosts = (state: RootState) => state.postsReducer.posts;
 export const getPostStatus = (state: RootState) => state.postsReducer.status;
