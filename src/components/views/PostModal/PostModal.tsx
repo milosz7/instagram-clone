@@ -27,8 +27,8 @@ const PostModal = () => {
         <div className={styles.postInfo}>
           <PostHeader pictureSrc={picture} username={username} />
           <div className={styles.commentBox}></div>
-          <PostInfo desc={desc} likes={likes} username={username} />
           <PostControls id={id} isFavorite={isFavorite} />
+          <PostInfo desc={desc} likes={likes} username={username} />
         </div>
       </div>
     </Dialog>
