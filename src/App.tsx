@@ -9,6 +9,7 @@ import PostModal from './components/views/PostModal/PostModal';
 import Messages from './components/pages/Messages/Messages';
 import NotFound from './components/pages/NotFound/NotFound';
 import PostPage from './components/pages/PostPage/PostPage';
+import Profile from './components/pages/Profile/Profile';
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
       <Container>
         <Routes location={state?.backgroundLocation || location}>
           <Route path='/' element={<Home />} />
+          <Route path='profile/:username' element={<Profile />} />
           <Route path='favorites' element={<Favorites />} />
           <Route path='discover' element={<Discover />} />
           <Route path='add' element={<Add />} />
