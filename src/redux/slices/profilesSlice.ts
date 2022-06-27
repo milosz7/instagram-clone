@@ -68,13 +68,21 @@ const profilesSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchProfileData.fulfilled, (state, action) => {
-        console.log(action.payload);
-        // state.profiles = state.profiles.concat(action.payload)
+        const profileData = action.payload;
+        state.status = 'succeeded';
+        state.profiles = state.profiles.concat(profileData);
+      })
+      .addCase(fetchProfileData.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
+        console.log(action.error.message);
       });
   },
 });
 
-export const getProfileData = (state: RootState, username: string) =>
+export const getProfileData = (state: RootState, username: string | undefined) =>
   state.profilesReducer.profiles.filter((profile) => profile.username === username);
+export const getProfilesStatus = (state: RootState) => state.profilesReducer.status;
+export const getCreatedProfiles = (state: RootState) => state.profilesReducer.profiles.map(profile => profile.username);
 
 export default profilesSlice.reducer;
