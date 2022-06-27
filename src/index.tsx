@@ -22,7 +22,7 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>
         <PersistGate loading={<Spinner />} persistor={persistor}>
-        <App />
+          <App />
         </PersistGate>
       </Provider>
     </BrowserRouter>

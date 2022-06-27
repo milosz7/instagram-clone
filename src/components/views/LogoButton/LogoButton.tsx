@@ -5,7 +5,7 @@ import { persistor } from '../../..';
 import { useAppDispatch } from '../../../redux/hooks';
 import { clearPosts, fetchPostData } from '../../../redux/slices/postsSlice';
 
-const LogoButton = ({children}: {children: React.ReactNode}) => {
+const LogoButton = ({ children }: { children: React.ReactNode }) => {
   const match = useMatch('/');
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -14,14 +14,13 @@ const LogoButton = ({children}: {children: React.ReactNode}) => {
       persistor.purge();
       dispatch(clearPosts());
       dispatch(fetchPostData());
-    }else
-    if (match) {
+    } else if (match) {
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
       });
     } else {
-      navigate('/')
+      navigate('/');
     }
   };
 
