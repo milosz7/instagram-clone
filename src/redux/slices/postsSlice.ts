@@ -23,7 +23,7 @@ interface Login {
 }
 
 interface Picture {
-  thumbnail: string;
+  medium: string;
 }
 
 interface Data {
@@ -96,7 +96,7 @@ const postsSlice = createSlice({
           id: shortid(),
           imageURL: `data:image/jpeg;base64,${imageURL}`,
           username: userDetails.login.username,
-          picture: userDetails.picture.thumbnail,
+          picture: userDetails.picture.medium,
           desc: postDescription,
           likes: Math.floor(Math.random() * 5000) + 1,
           isFavorite: false,
@@ -120,5 +120,7 @@ export const getPostById = (state: RootState, id: string | undefined) =>
   state.postsReducer.posts.find((post) => post.id === id);
 export const getFavoritePosts = (state: RootState) =>
   state.postsReducer.posts.filter((post) => post.isFavorite);
+export const getPostByUsername = (state: RootState, username: string | undefined) =>
+  state.postsReducer.posts.find((post) => post.username === username);
 
 export default postsSlice.reducer;
