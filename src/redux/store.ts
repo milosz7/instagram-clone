@@ -12,7 +12,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-const rootReducer = combineReducers({postsReducer, profilesReducer})
+const rootReducer = combineReducers({profiles: profilesReducer, postsReducer })
 
 const persistConfig = {
   key: 'root',
