@@ -61,6 +61,35 @@ export const fetchPostData = createAsyncThunk('posts/fetchPost', async () => {
   return userData;
 });
 
+export const fetchProfilePosts = createAsyncThunk(
+  'posts/fetchProfilePosts',
+  async ({username, picture}: {username: string, picture: string}) => {
+    const profilePostsNumber = Math.floor(Math.random() * 5);
+    const fetchedPosts = [];
+    for (let i = 0; i < profilePostsNumber; i++) {
+      const imageDataRequest = axios.get(IMAGE_URL, {
+        responseType: 'arraybuffer',
+      });
+      const descDataRequest = axios.get(DESC_URL);
+      const imageDataResponse = await imageDataRequest;
+      const descResponse = await descDataRequest;
+      const imageURL = Buffer.from(imageDataResponse.data, 'binary').toString('base64');
+      const generatedPost: Post = {
+        id: shortid(),
+        imageURL: `data:image/jpeg;base64,${imageURL}`,
+        username: username,
+        picture: picture,
+        desc: descResponse.data.content as string,
+        likes: Math.floor(Math.random() * 5000) + 1,
+        isFavorite: false,
+      };
+      fetchedPosts.push(generatedPost);
+    }
+    console.log(fetchedPosts);
+    return fetchedPosts;
+  }
+);
+
 const postsSlice = createSlice({
   name: 'posts',
   initialState,
@@ -81,7 +110,7 @@ const postsSlice = createSlice({
     },
     clearPosts: (state) => {
       state.posts = [];
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -108,7 +137,17 @@ const postsSlice = createSlice({
         state.status = 'failed';
         state.error = action.error.message;
         console.log(action.error.message);
-      });
+      })
+      .addCase(fetchProfilePosts.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchProfilePosts.fulfilled, (state, action: PayloadAction<Post[]>) => {
+        const generatedPosts = action.payload;
+        for (const post of generatedPosts) {
+          state.posts = state.posts.concat(post);
+        }
+        state.status = 'succeeded';
+      })
   },
 });
 
@@ -120,7 +159,19 @@ export const getPostById = (state: RootState, id: string | undefined) =>
   state.postsReducer.posts.find((post) => post.id === id);
 export const getFavoritePosts = (state: RootState) =>
   state.postsReducer.posts.filter((post) => post.isFavorite);
+export const getOnePostForUser = (state: RootState) => {
+  const uniqueUsers: string[] = [];
+  const filteredPosts = state.postsReducer.posts.filter((post) => {
+    const userCheck = uniqueUsers.indexOf(post.username) === -1;
+    uniqueUsers.push(post.username);
+    return userCheck;
+  });
+  return filteredPosts;
+};
 export const getPostByUsername = (state: RootState, username: string | undefined) =>
   state.postsReducer.posts.find((post) => post.username === username);
+export const getAllUserPosts = (state: RootState, username: string | undefined) =>
+state.postsReducer.posts.filter((post) => post.username === username);
+
 
 export default postsSlice.reducer;
