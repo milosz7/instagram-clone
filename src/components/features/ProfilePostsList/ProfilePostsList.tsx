@@ -11,13 +11,13 @@ import Spinner from '../../common/Spinner/Spinner';
 import PostMiniature from '../../views/PostMiniature/PostMiniature';
 import { createProfile } from '../../../redux/slices/profilesSlice';
 import styles from './ProfilePostsList.module.scss';
+import { Post } from '../../../redux/slices/postsSlice';
 
-const ProfilePostsList = () => {
+const ProfilePostsList = ({relatedPost}: {relatedPost: Post | undefined}) => {
   const { username } = useParams();
   const dispatch = useAppDispatch();
   const postStatus = useAppSelector(getPostStatus);
   const createdProfilesList = useAppSelector(getCreatedProfiles);
-  const relatedPost = useAppSelector((state) => getPostByUsername(state, username));
   if (username && relatedPost && createdProfilesList.indexOf(username) === -1) {
     const userBasicData = {
       username: relatedPost.username,
