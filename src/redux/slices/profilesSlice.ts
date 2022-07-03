@@ -1,8 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
+interface Profile {
+  username: string,
+  followers: number;
+  following: number;
+}
+
 interface State {
-  profiles: string[];
+  profiles: Profile[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
 }
 
@@ -15,13 +21,14 @@ const profilesSlice = createSlice({
   name: 'profiles',
   initialState,
   reducers: {
-    createProfile: (state, action) => {
+    createProfile: (state, action: PayloadAction<Profile>) => {
       state.profiles.push(action.payload);
     },
   },
 });
 
-export const getCreatedProfiles = (state: RootState) => state.profiles.profiles;
+export const getCreatedProfiles = (state: RootState) => state.profiles.profiles.map(profileData => profileData.username);
+export const getProfileData = (state: RootState, username: string) => state.profiles.profiles.find(profile => profile.username === username);
 
 export const { createProfile } = profilesSlice.actions;
 

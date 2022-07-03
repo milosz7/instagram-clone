@@ -23,7 +23,12 @@ const ProfilePostsList = ({relatedPost}: {relatedPost: Post | undefined}) => {
       username: relatedPost.username,
       picture: relatedPost.picture,
     };
-    dispatch(createProfile(username));
+    const profileData = {
+      username: username,
+      followers: Math.floor(Math.random() * 2000),
+      following: Math.floor(Math.random() * 2000),
+    }
+    dispatch(createProfile(profileData));
     dispatch(fetchProfilePosts(userBasicData));
   }
 
