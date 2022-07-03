@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import postsReducer from './slices/postsSlice';
+import profilesReducer from './slices/profilesSlice';
 import {
   persistReducer,
   FLUSH,
@@ -11,7 +12,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-const rootReducer = combineReducers({postsReducer})
+const rootReducer = combineReducers({profiles: profilesReducer, postsReducer })
 
 const persistConfig = {
   key: 'root',

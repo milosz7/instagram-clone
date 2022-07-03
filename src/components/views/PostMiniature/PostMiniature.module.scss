@@ -1,0 +1,17 @@
+@import '../../../styles/settings.scss';
+
+.layout {
+  width: calc(33% - $space-unit * 2);
+  overflow: hidden;
+  margin: $space-unit;
+  aspect-ratio: 1 / 1;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+  border-radius: $radius;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: $radius;  
+}
