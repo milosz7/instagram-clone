@@ -2,7 +2,8 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
 interface Profile {
-  username: string,
+  username: string;
+  picture: string;
   followers: number;
   following: number;
 }
@@ -28,7 +29,7 @@ const profilesSlice = createSlice({
 });
 
 export const getCreatedProfiles = (state: RootState) => state.profiles.profiles.map(profileData => profileData.username);
-export const getProfileData = (state: RootState, username: string) => state.profiles.profiles.find(profile => profile.username === username);
+export const getProfileData = (state: RootState, username: string | undefined) => state.profiles.profiles.find(profile => profile.username === username);
 
 export const { createProfile } = profilesSlice.actions;
 
