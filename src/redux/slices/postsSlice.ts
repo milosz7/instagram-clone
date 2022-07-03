@@ -58,7 +58,7 @@ export const fetchPostData = createAsyncThunk('posts/fetchPost', async () => {
       return [userDataResp, imageURL, userDataRequest];
     })
   );
-  return userData;
+  return await userData as [Data, string, string];
 });
 
 export const fetchProfilePosts = createAsyncThunk(
@@ -94,14 +94,14 @@ const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    likePost: (state, action) => {
+    likePost: (state, action: PayloadAction<string>) => {
       state.posts = state.posts.map((post) =>
         post.id === action.payload
           ? { ...post, likes: post.likes + 1, isFavorite: !post.isFavorite }
           : post
       );
     },
-    dislikePost: (state, action) => {
+    dislikePost: (state, action: PayloadAction<string>) => {
       state.posts = state.posts.map((post) =>
         post.id === action.payload
           ? { ...post, likes: post.likes - 1, isFavorite: !post.isFavorite }
@@ -118,9 +118,9 @@ const postsSlice = createSlice({
         state.status = 'loading';
       })
       .addCase(fetchPostData.fulfilled, (state, action) => {
-        const userDetails: Data = action.payload[0];
-        const imageURL: string = action.payload[1];
-        const postDescription: string = action.payload[2];
+        const userDetails = action.payload[0];
+        const imageURL = action.payload[1];
+        const postDescription = action.payload[2];
         const generatedPost: Post = {
           id: shortid(),
           imageURL: `data:image/jpeg;base64,${imageURL}`,
