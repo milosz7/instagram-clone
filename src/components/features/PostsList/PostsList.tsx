@@ -1,6 +1,6 @@
 import { useEffect, useRef, useCallback } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { fetchPostData, getPostStatus, getAllPosts, getOnePostForUser } from '../../../redux/slices/postsSlice';
+import { fetchPostData, getPostStatus, getOnePostForUser } from '../../../redux/slices/postsSlice';
 import Post from '../../views/Post/Post';
 import styles from './PostsList.module.scss';
 import Spinner from '../../common/Spinner/Spinner';

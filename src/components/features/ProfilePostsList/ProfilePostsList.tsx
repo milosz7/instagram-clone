@@ -10,6 +10,7 @@ import { getCreatedProfiles } from '../../../redux/slices/profilesSlice';
 import Spinner from '../../common/Spinner/Spinner';
 import PostMiniature from '../../views/PostMiniature/PostMiniature';
 import { createProfile } from '../../../redux/slices/profilesSlice';
+import styles from './ProfilePostsList.module.scss';
 
 const ProfilePostsList = () => {
   const { username } = useParams();
@@ -33,7 +34,7 @@ const ProfilePostsList = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       {profilePosts.map((post, idx) => (
         <PostMiniature key={idx} postData={post} />
       ))}
