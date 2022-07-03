@@ -23,7 +23,7 @@ interface Login {
 }
 
 interface Picture {
-  medium: string;
+  large: string;
 }
 
 interface Data {
@@ -85,7 +85,6 @@ export const fetchProfilePosts = createAsyncThunk(
       };
       fetchedPosts.push(generatedPost);
     }
-    console.log(fetchedPosts);
     return fetchedPosts;
   }
 );
@@ -125,7 +124,7 @@ const postsSlice = createSlice({
           id: shortid(),
           imageURL: `data:image/jpeg;base64,${imageURL}`,
           username: userDetails.login.username,
-          picture: userDetails.picture.medium,
+          picture: userDetails.picture.large,
           desc: postDescription,
           likes: Math.floor(Math.random() * 5000) + 1,
           isFavorite: false,

@@ -1,0 +1,23 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  display: flex;
+  gap: $space-unit * 3;
+  padding: $space-unit;
+}
+
+.image {
+  border-radius: 100%;
+  aspect-ratio: 1 / 1;
+  border: 2px solid $color-gray;
+}
+
+.bolded {
+  font-weight: bold;
+}
+
+.infoLayout {
+  display: flex;
+  font-size: 1.1rem;
+  gap: $space-unit * 4;
+}
