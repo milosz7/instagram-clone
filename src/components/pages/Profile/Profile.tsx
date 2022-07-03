@@ -1,17 +1,10 @@
-import ProfilePostsList from "../../features/ProfilePostsList/ProfilePostsList";
-import { useAppSelector } from "../../../redux/hooks";
-import { getPostByUsername } from "../../../redux/slices/postsSlice";
-import { useParams } from "react-router";
+import ProfileCreator from "../../features/ProfileCreator/ProfileCreator";
 
 const Profile = () => {
-  const { username } = useParams();
-  const relatedPost = useAppSelector((state) => getPostByUsername(state, username));
-
   return (
-    <>
-    <h1>Profile</h1>
-    <ProfilePostsList relatedPost={relatedPost} />
-    </>
+    <div>
+      <ProfileCreator />
+    </div>
   )
 }
 
