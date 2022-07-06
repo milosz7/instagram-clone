@@ -1,35 +1,28 @@
 import { getFavoritePosts } from '../../../redux/slices/postsSlice';
 import { useAppSelector } from '../../../redux/hooks';
-import Post from '../../views/Post/Post';
+import styles from './FavoritesList.module.scss';
+import PostMiniature from '../../views/PostMiniature/PostMiniature';
+import { Post } from '../../../redux/slices/postsSlice';
 
 const FavoritesList = () => {
   const favoritePosts = useAppSelector(getFavoritePosts);
-  console.log(favoritePosts)
 
   if (favoritePosts.length === 0)
     return (
-      <div>
+      <div className={styles.noPosts}>
         <h1>You do not have favorite posts!</h1>
         <h2>Like a post first and then go back to favorites.</h2>
       </div>
     );
   return (
-    <>
-      {favoritePosts.map(({ id, imageURL, username, picture, likes, isFavorite, desc }, idx: number) => {
-        return (
-          <Post
-            id={id}
-            imageURL={imageURL}
-            likes={likes}
-            pictureSrc={picture}
-            username={username}
-            desc={desc}
-            key={idx}
-            isFavorite={isFavorite}
-          />
-        );
-      })}
-    </>
+    <div>
+      <h1 className={styles.header}>Favorite posts</h1>
+      <div className={styles.layout}>
+        {favoritePosts.map((postData: Post, idx: number) => (
+          <PostMiniature key={idx} postData={postData} />
+        ))}
+      </div>
+    </div>
   );
 };
 

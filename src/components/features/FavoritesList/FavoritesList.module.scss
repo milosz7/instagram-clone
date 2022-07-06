@@ -1,0 +1,15 @@
+@import '../../../styles/settings.scss';
+
+.noPosts {
+  margin-top: $space-unit * 5;
+  text-align: center;
+}
+
+.header {
+  margin-left: $space-unit;
+}
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+}
