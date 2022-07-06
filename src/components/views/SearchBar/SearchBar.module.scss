@@ -1,5 +1,16 @@
 @import '../../../styles/settings.scss';
 
+.layout {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @media (max-width: 576px) {
+    display: none;
+  }
+}
+
 .input {
   padding: $space-unit * 0.5 $space-unit;
   border: none;
