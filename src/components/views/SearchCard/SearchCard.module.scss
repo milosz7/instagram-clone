@@ -1,0 +1,22 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  display: flex;
+  padding: $space-unit $space-unit * 0.5;
+  gap: $space-unit
+}
+
+.image {
+  height: 40px;
+  aspect-ratio: 1 / 1;
+  border-radius: 100%;
+}
+
+.bolded {
+  margin: 0;
+  font-weight: bold;
+  text-decoration: none;
+  align-self: center;
+  color: $color-dark;
+}
+
