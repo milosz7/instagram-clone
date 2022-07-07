@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import postsReducer from './slices/postsSlice';
 import profilesReducer from './slices/profilesSlice';
+import searchReducer from './slices/searchSlice';
 import {
   persistReducer,
   FLUSH,
@@ -12,12 +13,13 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
-const rootReducer = combineReducers({profiles: profilesReducer, postsReducer })
+const rootReducer = combineReducers({search: searchReducer, profiles: profilesReducer, postsReducer })
 
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
+  blacklist: ['search'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

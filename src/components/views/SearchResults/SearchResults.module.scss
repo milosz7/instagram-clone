@@ -1,0 +1,17 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  position: absolute;
+  width: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  top: $space-unit * 4;
+  padding-inline: $space-unit;
+  background: $color-light;
+  border: 1px solid $color-gray;
+  border-top: none;
+  border-radius: 0 0 $radius $radius;
+  max-height: 400px;
+  overflow-y: auto;
+  z-index: 3;
+}

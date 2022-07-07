@@ -171,6 +171,14 @@ export const getPostByUsername = (state: RootState, username: string | undefined
   state.postsReducer.posts.find((post) => post.username === username);
 export const getAllUserPosts = (state: RootState, username: string | undefined) =>
 state.postsReducer.posts.filter((post) => post.username === username);
-
+export const getSearchedUsers = (state: RootState, query: string) => {
+  const checkedUsers: string[] = [];
+  const filteredPosts = state.postsReducer.posts.filter((post) => {
+    const userCheck = checkedUsers.indexOf(post.username) === -1 && post.username.includes(query)
+    checkedUsers.push(post.username);
+    return userCheck
+  });
+  return filteredPosts;
+};
 
 export default postsSlice.reducer;
