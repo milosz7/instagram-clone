@@ -13,15 +13,25 @@ const SearchBar = ({ placeholder }: { placeholder: string }) => {
     <div className={styles.layout}>
       <input
         type="text"
-        onBlur={() => setTimeout(() => {
-          setIsFocused(false)
-        }, 150)}
+        onBlur={() =>
+          setTimeout(() => {
+            setIsFocused(false);
+          }, 150)
+        }
         onFocus={() => setIsFocused(true)}
         className={styles.input}
         placeholder={placeholder}
         value={searchQuery}
         onChange={(e) => dispatch(setSearch(e.target.value))}
       />
+      {searchQuery && (
+        <button onClick={() => {
+          setIsFocused(false);
+          dispatch(setSearch(''));
+        }} className={styles.dismissButton}>
+          <i className="fa fa-times"></i>
+        </button>
+      )}
       {isFocused && <SearchResults query={searchQuery} />}
     </div>
   );

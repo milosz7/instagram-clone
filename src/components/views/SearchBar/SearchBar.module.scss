@@ -22,3 +22,18 @@
     outline-color: $color-gray;
   }
 }
+
+.dismissButton {
+  border: none;
+  position: absolute;
+  right: $space-unit * 0.5;
+  top: 50%;
+  transform: translateY(-50%);
+  background: $color-gray;
+  cursor: pointer;
+  border-radius: 100%;
+  font-size: 0.8rem;
+  aspect-ratio: 1 / 1;
+  line-height: 0.8rem * 0.5;
+  color: $color-light;
+}
