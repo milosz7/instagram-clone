@@ -25,7 +25,7 @@ const Post = React.memo(
         <div ref={ref} className={styles.container}>
           <PostHeader pictureSrc={pictureSrc} username={username} />
           <Link state={{ backgroundLocation: location }} to={`/post/${id}`}>
-            <img src={imageURL} alt="post content" />
+            <img className={styles.image} src={imageURL} alt="post content" />
           </Link>
           <div className={styles.postLabel}>
             <PostControls id={id} isFavorite={isFavorite} />
