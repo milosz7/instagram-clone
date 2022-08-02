@@ -1,7 +1,7 @@
 import styles from './LogoButton.module.scss';
 import { useMatch, useNavigate } from 'react-router';
 import React from 'react';
-import { persistor } from '../../..';
+import { persistor } from '../../../..';
 import { useAppDispatch } from '../../../redux/hooks';
 import { clearPosts, fetchPostData } from '../../../redux/slices/postsSlice';
 
