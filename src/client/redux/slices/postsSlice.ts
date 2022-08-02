@@ -65,7 +65,7 @@ export const fetchProfilePosts = createAsyncThunk(
   'posts/fetchProfilePosts',
   async ({username, picture}: {username: string, picture: string}) => {
     const profilePostsNumber = Math.floor(Math.random() * 5);
-    const fetchedPosts = [];
+    const fetchedPosts: Post[] = [];
     for (let i = 0; i < profilePostsNumber; i++) {
       const imageDataRequest = axios.get(IMAGE_URL, {
         responseType: 'arraybuffer',
