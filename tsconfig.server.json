@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "../../dist",
     "noEmit": false,
@@ -10,5 +10,5 @@
     "moduleResolution": "node"
   },
   "exclude": ["../../build", "../client"],
-  "include": ["."]
+  "include": ["./src/server"]
 }
