@@ -9,7 +9,14 @@ const postSchema = new Schema({
   comments: { type: [{ type: Schema.Types.ObjectId, ref: 'Comment'}] },
 });
 
-type PostModel = InferSchemaType<typeof postSchema>;
+interface PostModel {
+  userData: Schema.Types.ObjectId;
+  desc?: string;
+  published: Date;
+  photo: Buffer;
+  likedBy: Schema.Types.ObjectId[];
+  comments: Schema.Types.ObjectId[]
+}
 
 const Post = model<PostModel>('Post', postSchema);
 

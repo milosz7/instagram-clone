@@ -19,7 +19,16 @@ const userSchema = new Schema({
   avatar: { type: Schema.Types.Buffer },
 });
 
-type UserModel = InferSchemaType<typeof userSchema>;
+interface UserModel {
+  email: string;
+  username: string;
+  posts: Schema.Types.ObjectId[];
+  following: Schema.Types.ObjectId[];
+  followers: Schema.Types.ObjectId[];
+  password: string;
+  profileDesc?: string;
+  avatar?: Buffer
+}
 
 const User = model<UserModel>('User', userSchema);
 

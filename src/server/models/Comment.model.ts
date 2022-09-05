@@ -7,7 +7,12 @@ const commentSchema = new Schema({
   likedBy: { type: [{ type: Schema.Types.ObjectId, ref: 'User' }] },
 });
 
-type CommentModel = InferSchemaType<typeof commentSchema>;
+interface CommentModel {
+  content: string;
+  postId: Schema.Types.ObjectId;
+  published: Date;
+  likedBy: Schema.Types.ObjectId;
+}
 
 const Comment = model<CommentModel>('Comment', commentSchema);
 
