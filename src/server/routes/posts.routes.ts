@@ -5,4 +5,6 @@ const router = express.Router();
 
 router.route('/load').get(postsMethods.load);
 
+router.route('/:id').get(postsMethods.getById);
+
 export default router;
