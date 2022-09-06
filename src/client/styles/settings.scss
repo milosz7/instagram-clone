@@ -4,6 +4,7 @@ $color-dark: #333333;
 $color-red: #B20600;
 $color-blue: #0095F6;
 $color-gray: #D0C9C0;
+$color-text-faded: lighten($color-dark, 25%);
 
 $space-unit: 12px;
 $b-width: 1px;
