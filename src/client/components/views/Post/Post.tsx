@@ -5,36 +5,36 @@ import styles from './Post.module.scss';
 import PostHeader from '../PostHeader/PostHeader';
 import PostControls from '../PostControls/PostControls';
 import PostInfo from '../PostInfo/PostInfo';
-
-type Props = {
-  imageURL: string;
-  username: string;
-  pictureSrc: string;
-  likes: number;
-  id: string;
-  desc: string;
-  isFavorite: boolean;
-};
+import mongoose, { Schema } from 'mongoose';
 
 const Post = React.memo(
-  React.forwardRef<HTMLDivElement, Props>(
-    ({ imageURL, username, pictureSrc, likes, id, isFavorite, desc }, ref) => {
-      let location = useLocation();
-
-      return (
-        <div ref={ref} className={styles.container}>
-          <PostHeader pictureSrc={pictureSrc} username={username} />
-          <Link state={{ backgroundLocation: location }} to={`/post/${id}`}>
-            <img className={styles.image} src={imageURL} alt="post content" />
-          </Link>
-          <div className={styles.postLabel}>
-            <PostControls id={id} isFavorite={isFavorite} />
-            <PostInfo likes={likes} username={username} desc={desc} />
-          </div>
-        </div>
-      );
+  React.forwardRef<
+    HTMLDivElement,
+    {
+      id: mongoose.Types.ObjectId;
+      desc?: string;
+      comments: Schema.Types.ObjectId[];
+      published: Date;
+      likedBy: Schema.Types.ObjectId[];
+      photo: string;
+      avatar: string;
+      username: string;
     }
-  )
+  >(({ id, desc, comments, published, likedBy, photo, avatar, username }, ref) => {
+    let location = useLocation();
+    return (
+      <div ref={ref} className={styles.container}>
+        <PostHeader pictureSrc={avatar} username={username} />
+        <Link state={{ backgroundLocation: location }} to={`/post/${id}`}>
+          <img className={styles.image} src={photo} alt="post content" />
+        </Link>
+        <div className={styles.postLabel}>
+          <PostControls id={id} />
+          <PostInfo likes={likedBy.length} username={username} desc={desc} />
+        </div>
+      </div>
+    );
+  })
 );
 
 export default Post;
