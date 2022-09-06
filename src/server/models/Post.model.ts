@@ -13,7 +13,7 @@ interface PostModel {
   _id: Types.ObjectId;
   userData: Schema.Types.ObjectId;
   desc?: string;
-  published: Date;
+  published: string;
   photo: Buffer;
   likedBy: Schema.Types.ObjectId[];
   comments: Schema.Types.ObjectId[]
