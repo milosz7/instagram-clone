@@ -14,7 +14,7 @@ const Post = React.memo(
       id: mongoose.Types.ObjectId;
       desc?: string;
       comments: Schema.Types.ObjectId[];
-      published: Date;
+      published: string;
       likedBy: Schema.Types.ObjectId[];
       photo: string;
       avatar: string;

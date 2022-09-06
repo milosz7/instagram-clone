@@ -4,7 +4,7 @@ export interface TrimmedPost {
   id: mongoose.Types.ObjectId;
   desc?: string;
   comments: Schema.Types.ObjectId[];
-  published: Date;
+  published: string;
   likedBy: Schema.Types.ObjectId[];
   photo: string;
   avatar: string;
@@ -15,7 +15,7 @@ export interface PopulatedPost {
   _id: mongoose.Types.ObjectId;
   desc?: string;
   comments: Schema.Types.ObjectId[];
-  published: Date;
+  published: string;
   likedBy: Schema.Types.ObjectId[];
   photo: Buffer;
   userData: {
