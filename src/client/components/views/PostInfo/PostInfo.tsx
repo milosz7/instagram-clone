@@ -4,10 +4,12 @@ const PostInfo = ({
   likes,
   username,
   desc,
+  published
 }: {
   likes: number;
   username: string;
   desc?: string;
+  published: string
 }) => {
   return (
     <div className={styles.container}>
@@ -20,6 +22,7 @@ const PostInfo = ({
           {desc}
         </p>
       )}
+      <p className={styles.published}>{published}</p>
     </div>
   );
 };
