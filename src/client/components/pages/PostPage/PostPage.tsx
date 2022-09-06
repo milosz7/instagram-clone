@@ -1,19 +1,28 @@
 import { useParams } from 'react-router';
-import { useAppSelector } from '../../../redux/hooks';
-import { getPostById } from '../../../redux/slices/postsSlice';
 import PostExpanded from '../../views/PostExpanded/PostExpanded';
-import { getAllPosts } from '../../../redux/slices/postsSlice';
+import { useState, useEffect } from 'react';
+import { TrimmedPost } from '../../../../types/db-responses';
+import axios from 'axios';
+import styles from './PostPage.module.scss';
 
 const PostPage = () => {
-  const { id } = useParams();
-  const allPosts = useAppSelector(getAllPosts)
-  const postData = useAppSelector((state) => getPostById(state, id));
 
-  console.log(postData, allPosts, id);
+  const { id } = useParams();
+  const [postData, setPostData] = useState<null | TrimmedPost>(null);
+  
+  useEffect(() => {
+    const fetchPostData = async () => {
+      const { data }: { data: TrimmedPost } = await axios.get(`/api/posts/${id}`);
+      setPostData(data);
+    };
+    fetchPostData();
+  });
 
   if (!postData) return null;
   return (
-    <PostExpanded {...postData} />
+    <div className={styles.container}>
+      <PostExpanded {...postData} />
+    </div>
   )
 };
 
