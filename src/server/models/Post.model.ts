@@ -1,4 +1,4 @@
-import { model, Schema, InferSchemaType } from 'mongoose';
+import {Types, model, Schema } from 'mongoose';
 
 const postSchema = new Schema({
   userData: { type: Schema.Types.ObjectId, required: true, ref: 'User' },
@@ -10,6 +10,7 @@ const postSchema = new Schema({
 });
 
 interface PostModel {
+  _id: Types.ObjectId;
   userData: Schema.Types.ObjectId;
   desc?: string;
   published: Date;

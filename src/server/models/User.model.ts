@@ -1,4 +1,4 @@
-import { model, Schema, InferSchemaType } from 'mongoose';
+import { model, Schema } from 'mongoose';
 import { validateEmail, validateUsername } from '../../utils/helpers';
 
 const userSchema = new Schema({
@@ -7,7 +7,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
     minLength: 3,
-    maxLength: 15,
+    maxLength: 16,
     validate: validateUsername,
     unique: true,
   },

@@ -1,31 +1,21 @@
 import IconButtonAnimated from '../../common/IconButtonAnimated/IconButtonAnimated';
 import styles from './PostControls.module.scss';
-import { useState } from 'react';
-import { useAppDispatch } from '../../../redux/hooks';
-import { likePost, dislikePost } from '../../../redux/slices/postsSlice';
 import IconButton from '../../common/IconButton/IconButton';
+import { Types } from 'mongoose';
 
-const PostControls = ({ isFavorite, id }: { isFavorite: boolean; id: string | undefined }) => {
-  const [liked, setLiked] = useState(isFavorite);
-  const dispatch = useAppDispatch();
+const PostControls = ({ id }: { id: Types.ObjectId }) => {
 
   if (!id) return null;
 
-  const manageClick = (id: string) => {
-    setLiked(!liked);
-    changePostStatus(id);
-  };
+  const manageClick = (id: Types.ObjectId) => {
 
-  const changePostStatus = (id: string) => {
-    if (!liked) dispatch(likePost(id));
-    if (liked) dispatch(dislikePost(id));
   };
 
   return (
     <div className={styles.container}>
       <IconButtonAnimated
         icon="heart"
-        isClicked={liked}
+        isClicked={false}
         colorClass="buttonLikedRed"
         action={() => manageClick(id)}
       />

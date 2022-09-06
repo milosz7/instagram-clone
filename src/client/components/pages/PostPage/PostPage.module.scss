@@ -1,0 +1,6 @@
+@import '../../../styles/settings.scss';
+
+.container {
+  margin-top: $space-unit * 3;
+  border: $b-width $color-gray solid;
+}
