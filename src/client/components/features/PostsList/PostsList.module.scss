@@ -1,5 +1,18 @@
+@import '../../../styles/settings.scss';
+
 .postContainer { 
   width: max-content;
+}
+
+.noData {
+  border: $b-width solid $color-gray;
+  border-radius: $radius;
+  font-size: 0.9rem;
+  text-align: center;
+  background-color: #fff;
+  margin-bottom: $space-unit;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.25);
+  padding: $space-unit * 0.5;
 }
 
 .spinner {

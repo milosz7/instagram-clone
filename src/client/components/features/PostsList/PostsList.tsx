@@ -1,69 +1,70 @@
-import { useEffect, useRef, useCallback } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { fetchPostData, getPostStatus, getOnePostForUser } from '../../../redux/slices/postsSlice';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import Post from '../../views/Post/Post';
 import styles from './PostsList.module.scss';
 import Spinner from '../../common/Spinner/Spinner';
+import axios from 'axios';
+import { TrimmedPost } from '../../../../types/db-responses';
+import { Types } from 'mongoose';
 
 const PostsList = () => {
-  const postsData = useAppSelector(getOnePostForUser);
-  const postsStatus = useAppSelector(getPostStatus);
-  const dispatch = useAppDispatch();
+  const [postsData, setPostsData] = useState<TrimmedPost[]>([]);
+  const [lastId, setLastId] = useState<null | Types.ObjectId>(null);
+  const [loading, setLoading] = useState(false);
+  const [noData, setNoData] = useState(false);
 
   const observer = useRef<IntersectionObserver>();
 
   const lastPostElement = useCallback(
-    (elem: HTMLDivElement) => {  
-      if (postsStatus === 'loading' && observer.current) return null;
+    (elem: HTMLDivElement) => {
+      if (loading && observer.current) return null;
       if (observer.current) observer.current.disconnect();
-      observer.current = new IntersectionObserver((entries) => {
+      observer.current = new IntersectionObserver(async (entries) => {
         if (entries[0].isIntersecting) {
-          dispatch(fetchPostData());
+          setLoading(true);
+          const { data }: { data: TrimmedPost[] } = await axios.get(
+            `/api/posts/load?lastid=${lastId}`
+          );
+          if (!data.length) {
+            setLoading(false);
+            setNoData(true);
+          }
+          if (data.length) {
+            setLastId(data[data.length - 1].id);
+            setPostsData([...postsData, ...data]);
+            setLoading(false);
+          }
         }
       });
       if (elem) observer.current.observe(elem);
     },
-    [postsStatus, dispatch]
+    [postsData]
   );
 
   useEffect(() => {
-    if (postsStatus === 'idle') {
-      dispatch(fetchPostData());
-    }
-  }, [dispatch, postsStatus]);
+    const initialPostsFetch = async () => {
+      setLoading(true);
+      const { data }: { data: TrimmedPost[] } = await axios.get('/api/posts/load');
+      setLastId(data[data.length - 1].id);
+      setPostsData([...data]);
+      setLoading(false);
+    };
+    initialPostsFetch();
+  }, []);
 
   return (
     <div className={styles.postContainer}>
-      {postsData.map(({ id, imageURL, username, picture, likes, isFavorite, desc }, idx: number) => {
+      {postsData.map((data, idx: number) => {
         if (postsData.length === idx + 1) {
-          return (
-            <Post
-              id={id}
-              ref={lastPostElement}
-              imageURL={imageURL}
-              likes={likes}
-              pictureSrc={picture}
-              username={username}
-              desc={desc}
-              key={idx}
-              isFavorite={isFavorite}
-            />
-          );
+          return <Post ref={lastPostElement} key={idx} {...data} />;
         }
-        return (
-          <Post
-            id={id}
-            imageURL={imageURL}
-            likes={likes}
-            pictureSrc={picture}
-            username={username}
-            desc={desc}
-            key={idx}
-            isFavorite={isFavorite}
-          />
-        );
+        return <Post key={idx} {...data} />;
       })}
-      {postsStatus === 'loading' && <Spinner />}
+      {loading && <Spinner />}
+      {noData && (
+        <div className={styles.noData}>
+          <p>There are no more posts avaliable, please refresh the page!</p>
+        </div>
+      )}
     </div>
   );
 };
