@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import { connectToDb } from '../utils/helpers';
+import { connectToDb } from '../utils/helpers-server';
 import postRoutes from './routes/posts.routes'
 
 const port = process.env.PORT || 3001;

@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import Post from '../models/Post.model';
 import User from '../models/User.model';
 import { TrimmedPost } from '../../types/db-responses';
-import { trimPostData } from '../../utils/helpers';
+import { trimPostData } from '../../utils/helpers-server';
 
 const postsMethods = {
   load: async (req: Request, res: Response, next: NextFunction) => {
