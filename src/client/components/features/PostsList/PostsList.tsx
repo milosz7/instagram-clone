@@ -20,18 +20,18 @@ const PostsList = () => {
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver(async (entries) => {
         if (entries[0].isIntersecting) {
-          setLoading(true);
-          const { data }: { data: TrimmedPost[] } = await axios.get(
-            `/api/posts/load?lastid=${lastId}`
-          );
-          if (!data.length) {
+          try {
+            setLoading(true);
+            const { data }: { data: TrimmedPost[] } = await axios.get(
+              `/api/posts/load?lastid=${lastId}`);
+            if (data.length !== 0) {
+              setLastId(data[data.length - 1].id);
+              setPostsData([...postsData, ...data]);
+              setLoading(false);
+            }
+          } catch {
             setLoading(false);
             setNoData(true);
-          }
-          if (data.length) {
-            setLastId(data[data.length - 1].id);
-            setPostsData([...postsData, ...data]);
-            setLoading(false);
           }
         }
       });
