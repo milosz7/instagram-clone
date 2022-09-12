@@ -3,7 +3,7 @@ import Post from '../../views/Post/Post';
 import styles from './PostsList.module.scss';
 import Spinner from '../../common/Spinner/Spinner';
 import axios from 'axios';
-import { TrimmedPost } from '../../../../types/db-responses';
+import { TrimmedPost } from '../../../../types/interfaces';
 import { Types } from 'mongoose';
 
 const PostsList = () => {

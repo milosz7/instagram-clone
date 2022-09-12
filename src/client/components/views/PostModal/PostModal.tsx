@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router';
 import { Dialog } from '@reach/dialog';
 import '@reach/dialog/styles.css';
 import PostExpanded from '../PostExpanded/PostExpanded';
-import { TrimmedPost } from '../../../../types/db-responses';
+import { TrimmedPost } from '../../../../types/interfaces';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './PostModal.module.scss';

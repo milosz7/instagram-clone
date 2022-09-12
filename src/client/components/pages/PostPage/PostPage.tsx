@@ -1,7 +1,7 @@
 import { useParams } from 'react-router';
 import PostExpanded from '../../views/PostExpanded/PostExpanded';
 import { useState, useEffect } from 'react';
-import { TrimmedPost } from '../../../../types/db-responses';
+import { TrimmedPost } from '../../../../types/interfaces';
 import axios from 'axios';
 import styles from './PostPage.module.scss';
 

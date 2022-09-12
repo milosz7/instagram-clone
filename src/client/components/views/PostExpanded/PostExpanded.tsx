@@ -2,7 +2,7 @@ import PostHeader from '../PostHeader/PostHeader';
 import PostControls from '../PostControls/PostControls';
 import PostInfo from '../PostInfo/PostInfo';
 import styles from './PostExpanded.module.scss';
-import { TrimmedPost } from '../../../../types/db-responses';
+import { TrimmedPost } from '../../../../types/interfaces';
 import { msToPublishedInfo } from '../../../../utils/helpers-client';
 import { useMemo } from 'react';
 
