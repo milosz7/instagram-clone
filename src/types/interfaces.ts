@@ -1,4 +1,5 @@
 import mongoose, { Schema } from 'mongoose';
+import { NextFunction } from 'express';
 
 export interface TrimmedPost {
   id: mongoose.Types.ObjectId;
@@ -29,4 +30,8 @@ export interface PassedUserData {
   password: string;
   email: string;
   phone: string;
+}
+
+export interface NextError extends NextFunction {
+  (err?: {message: string, status: number}): void;
 }

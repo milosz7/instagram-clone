@@ -7,8 +7,9 @@
     "module": "esnext",
     "strict": true,
     "target": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "typeRoots": ["./src/types"]
   },
-  "exclude": ["../../build", "../client"],
-  "include": ["./src/server"]
+  "exclude": ["./build", "./src/client"],
+  "include": ["./src/server", "./src/types"]
 }
