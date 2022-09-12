@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { validateEmail, validateUsername } from '../../utils/helpers-server';
+import { validateEmail, validatePhoneNumber, validateUsername } from '../../utils/helpers-server';
 
 const userSchema = new Schema({
   email: { type: String, required: true, validate: validateEmail, unique: true },
@@ -11,9 +11,10 @@ const userSchema = new Schema({
     validate: validateUsername,
     unique: true,
   },
-  posts: { type: [{type: Schema.Types.ObjectId, ref: 'Post'}]},
-  following: { type: [{type: Schema.Types.ObjectId, ref: 'User'}]},
-  followers: { type: [{type: Schema.Types.ObjectId, ref: 'User'}]},
+  phone: { type: String, required: true, unique: true, validate: validatePhoneNumber },
+  posts: { type: [{ type: Schema.Types.ObjectId, ref: 'Post' }] },
+  following: { type: [{ type: Schema.Types.ObjectId, ref: 'User' }] },
+  followers: { type: [{ type: Schema.Types.ObjectId, ref: 'User' }] },
   password: { type: String, required: true },
   profileDesc: { type: String, maxLength: 50 },
   avatar: { type: Schema.Types.Buffer },
@@ -27,7 +28,7 @@ interface UserModel {
   followers: Schema.Types.ObjectId[];
   password: string;
   profileDesc?: string;
-  avatar?: Buffer
+  avatar?: Buffer;
 }
 
 const User = model<UserModel>('User', userSchema);
