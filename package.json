@@ -38,7 +38,7 @@
     "webpack-node-externals": "^3.0.0"
   },
   "scripts": {
-    "test": "react-scripts test",
+    "test": "react-scripts test --testPathIgnorePatterns=src/server",
     "test:server": "env TS_NODE_PROJECT=\"tests.tsconfig.json\" mocha -r ts-node/register './src/server/tests/**/*.ts' --watch --watch-files './src/server/**/*.ts'",
     "eject": "react-scripts eject",
     "dev": "concurrently -p name -c \"yellow,magenta,blue\" -n \"webpack-server,nodemon-server,CRA\" \"yarn dev:server:webpack\" \"yarn dev:server:nodemon\" \"yarn dev:client\"",
