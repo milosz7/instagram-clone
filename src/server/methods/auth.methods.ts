@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
-import { PassedUserData } from '../../types/interfaces';
+import { Request, Response } from 'express';
+import { PassedUserData, NextError } from '../../types/interfaces';
 import { validatePassword } from '../../utils/helpers-server';
 import {
   provideData,
@@ -7,14 +7,16 @@ import {
   weakPassword,
   emailTaken,
   phoneTaken,
+  provideLoginData,
   internalServerError,
+  unauthorizedLogin,
 } from '../../utils/error-messages';
 import { createDbPhoneQuery } from '../../utils/createDbPhoneQuery';
 import User from '../models/User.model';
 import bcrypt from 'bcrypt';
 
 const authMethods = {
-  register: async (req: Request, res: Response, next: NextFunction) => {
+  register: async (req: Request, res: Response, next: NextError) => {
     try {
       const { password, email, phone, username }: PassedUserData = req.body;
 
@@ -43,6 +45,31 @@ const authMethods = {
     } catch {
       return next(internalServerError);
     }
+  },
+  login: async (req: Request, res: Response, next: NextError) => {
+    try {
+      const { password, username }: { password?: string; username?: string } = req.body;
+      if (!password || !username) return next(provideLoginData);
+
+      const requestedUser = await User.findOne({ username: { $eq: username } });
+      if (!requestedUser) return next(unauthorizedLogin);
+
+      const isPasswordMatching = await bcrypt.compare(password, requestedUser.password);
+      if (!isPasswordMatching) return next(unauthorizedLogin);
+      req.session.user = {
+        username: requestedUser.username,
+        id: requestedUser._id,
+      };
+      return res.status(200).json({ message: 'Logged in succesfully!' });
+    } catch {
+      return next(internalServerError);
+    }
+  },
+  logout: async (req: Request, res: Response, next: NextError) => {
+    req.session.destroy((err) => {
+      if (err) return next(internalServerError);
+    });
+    return res.status(200).json({ message: 'Logged out succesfully.' });
   },
 };
 
