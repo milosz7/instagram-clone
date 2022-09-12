@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import Post from '../models/Post.model';
 import User from '../models/User.model';
-import { TrimmedPost } from '../../types/db-responses';
+import { TrimmedPost } from '../../types/interfaces';
 import { trimPostData } from '../../utils/helpers-server';
 
 const postsMethods = {

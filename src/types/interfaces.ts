@@ -23,3 +23,10 @@ export interface PopulatedPost {
     username: string;
   };
 }
+
+export interface PassedUserData {
+  username: string;
+  password: string;
+  email: string;
+  phone: string;
+}
