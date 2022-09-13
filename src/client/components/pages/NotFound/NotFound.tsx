@@ -7,7 +7,7 @@ const NotFound = () => {
     <div className={styles.contentBox}>
       <h1>The page you were looking for does not exist!</h1>
       <Link to="/">
-        <Button>Return to homepage</Button>
+        <Button type="button">Return to homepage</Button>
       </Link>
     </div>
   );
