@@ -1,4 +1,4 @@
-import { msToPublishedInfo } from '../../utils/helpers-client';
+import { msToPublishedInfo } from '../../utils/msToPublishedInfo';
 
 describe('msToPublishedInfo function', () => {
   it('Should return correct published info', () => {

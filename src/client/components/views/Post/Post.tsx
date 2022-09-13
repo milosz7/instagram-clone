@@ -6,7 +6,7 @@ import PostHeader from '../PostHeader/PostHeader';
 import PostControls from '../PostControls/PostControls';
 import PostInfo from '../PostInfo/PostInfo';
 import mongoose, { Schema } from 'mongoose';
-import { msToPublishedInfo } from '../../../../utils/helpers-client';
+import { msToPublishedInfo } from '../../../../utils/msToPublishedInfo';
 
 const Post = React.memo(
   React.forwardRef<

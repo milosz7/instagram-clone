@@ -3,7 +3,7 @@ import PostControls from '../PostControls/PostControls';
 import PostInfo from '../PostInfo/PostInfo';
 import styles from './PostExpanded.module.scss';
 import { TrimmedPost } from '../../../../types/interfaces';
-import { msToPublishedInfo } from '../../../../utils/helpers-client';
+import { msToPublishedInfo } from '../../../../utils/msToPublishedInfo';
 import { useMemo } from 'react';
 
 const PostExpanded = ({
