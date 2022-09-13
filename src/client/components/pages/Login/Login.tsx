@@ -1,8 +1,5 @@
-import Button from '../../common/Button/Button';
-import { useState, Dispatch, SetStateAction } from 'react';
-import axios from 'axios';
+import { Dispatch, SetStateAction } from 'react';
 import styles from './Login.module.scss';
-import clsx from 'clsx';
 import { Link } from 'react-router-dom';
 import LoginForm from '../../features/LoginForm/LoginForm';
 
