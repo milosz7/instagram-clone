@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { PassedUserData, NextError } from '../../types/interfaces';
-import { validatePassword } from '../../utils/helpers-server';
+import { validatePassword } from '../../utils/validators';
 import {
   provideData,
   usernameTaken,

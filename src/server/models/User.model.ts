@@ -1,5 +1,5 @@
 import { model, Schema } from 'mongoose';
-import { validateEmail, validatePhoneNumber, validateUsername } from '../../utils/helpers-server';
+import { validateEmail, validatePhoneNumber, validateUsername } from '../../utils/validators';
 
 const userSchema = new Schema({
   email: { type: String, required: true, validate: validateEmail, unique: true },
