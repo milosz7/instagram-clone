@@ -1,5 +1,4 @@
 @import '../../../styles/settings.scss';
-@import '../../../styles/typography';
 
 .container {
   width: 100vw;
@@ -9,80 +8,6 @@
 
 .layout {
   margin: auto;
-}
-
-.form {
-  background-color: $color-light;
-  font-size: 0.9rem;
-  text-align: center;
-  padding: 0 $space-unit * 3 $space-unit;
-  border: $b-width solid $color-gray;
-  max-width: calc(100vw - 2 * $space-unit);
-  max-height: calc(100vh - 2 * $space-unit);
-  height: 350px;
-  width: 350px;
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: space-evenly;
-}
-
-.title {
-  font-family: $font-logo;
-  font-weight: 400;
-  font-size: 3rem;
-  color: $color-dark;
-  margin: 0;
-  margin-block: $space-unit * 2;
-}
-
-.label {
-  position: relative;
-  display: block;
-  border-radius: $radius;
-  margin-bottom: $space-unit * 0.5;
-
-  &:last-of-type {
-    margin-bottom: $space-unit * 2;
-  }
-
-  span {
-    transition: all 0.5s;
-    position: absolute;
-    left: $login-form-text-gap;
-    top: 50%;
-    transform: translateY(-50%);
-    color: $color-dark;
-
-    &.active {
-      transform: translate(-12px, -18px) scale(0.7);
-    }
-  }
-}
-
-.passwordBtn {
-  position: absolute;
-  top: 50%;
-  border: none;
-  background: lighten($color-gray, 20%);
-  right: $space-unit * 0.5;
-  transform: translateY(-50%);
-  font-size: 0.9rem;
-}
-
-.input {
-  padding: $space-unit $space-unit * 0.5;
-  background-color: lighten($color-gray, 20%);
-  border: $b-width solid $color-gray;
-  width: 100%;
-
-  &.active {
-    padding-top: $space-unit * 1.5;
-    padding-bottom: $space-unit * 0.5;
-  }
-
-  &:focus {
-    outline: 1px solid $color-gray;
-  }
 }
 
 .register {
