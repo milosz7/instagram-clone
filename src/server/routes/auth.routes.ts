@@ -9,4 +9,6 @@ router.route('/login').post(authMethods.login);
 
 router.route('/logout').delete(authMethods.logout);
 
+router.route('/is-logged').get(authMethods.isLoggedIn);
+
 export default router;

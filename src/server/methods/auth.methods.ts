@@ -71,6 +71,10 @@ const authMethods = {
     });
     return res.status(200).json({ message: 'Logged out succesfully.' });
   },
+  isLoggedIn: (req: Request, res: Response, next: NextError) => {
+    if (req.session.user) return res.json({ logged: true });
+    return res.json({ logged: false });
+  },
 };
 
 export default authMethods;
