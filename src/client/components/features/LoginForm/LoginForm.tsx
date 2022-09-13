@@ -11,13 +11,10 @@ const LoginForm = ({ action }: { action: Dispatch<SetStateAction<boolean>> }) =>
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { data }: { data: { logged: boolean }; status: number } = await axios.post(
-      '/auth/login',
-      { username, password }
-    );
+    const { status } = await axios.post('/auth/login', { username, password });
     setUsername('');
     setPassword('');
-    action(data.logged);
+    if (status === 200) action(true);
   };
 
   return (

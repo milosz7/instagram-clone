@@ -19,16 +19,16 @@ function App() {
   let state = location.state as { backgroundLocation?: Location };
   const [loggedIn, setLoggedIn] = useState(false);
 
-  const isSessionActive = async () => {
-    const { data }: { data: { logged: boolean } } = await axios.get('/auth/is-logged', {
-      withCredentials: true,
-    });
-    setLoggedIn(data.logged);
-  };
-
   useEffect(() => {
+    const isSessionActive = async () => {
+      const { data }: { data: { logged: boolean } } = await axios.get('/auth/is-logged', {
+        withCredentials: true,
+      });
+      setLoggedIn(data.logged);
+    };
+
     isSessionActive();
-  }, [loggedIn]);
+  }, []);
 
   if (!loggedIn)
     return (
